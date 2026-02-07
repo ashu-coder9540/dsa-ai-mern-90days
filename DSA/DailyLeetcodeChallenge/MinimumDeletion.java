@@ -46,11 +46,62 @@ public class MinimumDeletion {
         }
         return minDeletion;
     }
+
+    public static int minimumDeletions3(String s) {
+        // 3rd Approach: count total a and decr a_count whenever a encountered 
+        // and increase count_b whenever b encountered
+        int n = s.length();
+
+        int a_count = 0;
+        for(int i=0; i<n; i++){
+           char currCh = s.charAt(i);
+           if(currCh == 'a') a_count++;
+        }
+
+        int minDeletion = Integer.MAX_VALUE;
+        int b_count = 0;
+        for(int i=0; i<n; i++){
+            char currCh = s.charAt(i);
+            if(currCh == 'a') a_count--;
+            minDeletion = Math.min(minDeletion, b_count + a_count);
+            if(currCh == 'b') b_count++;
+        }
+        return minDeletion;
+    }
+
+    public static int minimumDeletions4(String s) {
+        // 4th Approach: count total a and decr a_count whenever a encountered 
+        // and increase count_b whenever b encountered
+        int n = s.length();
+
+        int a_count = 0;
+        for(int i=0; i<n; i++){
+           char currCh = s.charAt(i);
+           if(currCh == 'a') a_count++;
+        }
+
+        int minDeletion = Integer.MAX_VALUE;
+        int b_count = 0;
+        for(int i=0; i<n; i++){
+            char currCh = s.charAt(i);
+            if(currCh == 'a') a_count--;
+            minDeletion = Math.min(minDeletion, b_count + a_count);
+            if(currCh == 'b') b_count++;
+        }
+        return minDeletion;
+    }
     public static void main(String[] args) {
         String s = "aababbab";
         int minDeletion = minimumDeletions(s);
         System.out.println(minDeletion); // O/P: 2
+
         int minDeletion2 = minimumDeletions2(s);
-        System.out.print(minDeletion2);  // O/P: 2
+        System.out.println(minDeletion2);  // O/P: 2
+
+        int minDeletion3 = minimumDeletions3(s);
+        System.out.println(minDeletion3);  // O/P: 2
+
+        int minDeletion4 = minimumDeletions4(s);
+        System.out.println(minDeletion4); // O/P: 2
     }
 }
